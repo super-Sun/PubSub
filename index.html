@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="pubsub.js"></script>
+</head>
+<body>
+<script>
+    PubSub.on('click2 click3 click1 click2:1111',  function (data) {
+        console.log('data: ' + data)
+    })
+
+    // PubSub.off('click2')
+    PubSub.trigger('click2', 'aaa')
+
+    PubSub.one('click5', function (data) {
+        console.log('one: '+ data)
+    })
+
+    PubSub.triggerOnce('click2', 'bbb')
+
+</script>
+</body>
+</html>
