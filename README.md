@@ -90,7 +90,7 @@ PubSub.off('start end')
 // 移除子事件，不对父事件和兄弟事件产生任何影响
 PubSub.off('start:111')
 // 移除父事件，其相关的子事件都会被移除
-PubSub.trigger('start')
+PubSub.off('start')
 ```
 ### 4.绑定一次性事件
 ``` javascript
@@ -123,6 +123,7 @@ PubSub.one('start:111 start:222',  function (data) {
 */
 PubSub.triggerOnce('start', 'I am start trigger')
 // 输出：data: I am start trigger
+// 再次执行
 PubSub.triggerOnce('start', 'I am start trigger')
 // 事件不存在！
 /** 
@@ -132,6 +133,7 @@ PubSub.triggerOnce('start', 'I am start trigger')
 PubSub.triggerOnce('start end',  'I am two events')
 // 输出startCallback('I am two events')
 // 输出endCallback('I am two events')
+// 再次执行
 PubSub.triggerOnce('start end',  'I am two events')
 // 输出：事件不存在！
 /** 
@@ -140,6 +142,7 @@ PubSub.triggerOnce('start end',  'I am two events')
 */
 PubSub.triggerOnce('start:111', '执行start:111')
 // 输出：callbackB('执行start:111')
+// 再次执行
 PubSub.triggerOnce('start:111', '执行start:111')
 // 输出：事件不存在！
 /** 执行的事件如果存在子事件，将会被一起执行 */
@@ -147,6 +150,7 @@ PubSub.triggerOnce('start', '执行all')
 // 输出：callbackA('执行all')
 // 输出：callbackB('执行all')
 // 输出：callbackC('执行all')
+// 再次执行
 PubSub.triggerOnce('start', '执行all')
 // 输出：事件不存在！
 ```
