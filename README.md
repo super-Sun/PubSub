@@ -123,9 +123,11 @@ PubSub.one('start:111 start:222',  function (data) {
 */
 PubSub.triggerOnce('start', 'I am start trigger')
 // 输出：data: I am start trigger
+
 // 再次执行
 PubSub.triggerOnce('start', 'I am start trigger')
 // 事件不存在！
+
 /** 
 * 2.假定目前PubSub所有的事件集总共有两个事件："start"、"end"
 * 他们的回调分别为：startCallback、endCallback
@@ -133,23 +135,28 @@ PubSub.triggerOnce('start', 'I am start trigger')
 PubSub.triggerOnce('start end',  'I am two events')
 // 输出startCallback('I am two events')
 // 输出endCallback('I am two events')
+
 // 再次执行
 PubSub.triggerOnce('start end',  'I am two events')
 // 输出：事件不存在！
+
 /** 
 * 3.假定目前PubSub所有的事件集总共有三个事件："start"、"start:111"、"start:222"
 * 他们的回调分别为callbackA、callbackB、callbackC
 */
 PubSub.triggerOnce('start:111', '执行start:111')
 // 输出：callbackB('执行start:111')
+
 // 再次执行
 PubSub.triggerOnce('start:111', '执行start:111')
 // 输出：事件不存在！
+
 /** 执行的事件如果存在子事件，将会被一起执行 */
 PubSub.triggerOnce('start', '执行all')
 // 输出：callbackA('执行all')
 // 输出：callbackB('执行all')
 // 输出：callbackC('执行all')
+
 // 再次执行
 PubSub.triggerOnce('start', '执行all')
 // 输出：事件不存在！
